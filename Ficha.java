@@ -1,8 +1,11 @@
+//Clase ficha que implementa la interfaz Movible(es decir todos los métodos de la clase se deben declarar
+// aquí para utilizarlos)
 public class Ficha implements Movible{
 
-    private int lado1;
-    private int lado2;
-    private boolean estaVolteada;
+    //Atributos protegidos ya que se utilizan como atributos en clases hijas
+    protected int lado1;
+    protected int lado2;
+    protected boolean estaVolteada;
 
     /**
      * Constructor por defecto
@@ -41,6 +44,9 @@ public class Ficha implements Movible{
         return false;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //Sección de getters y setters
+
     public int getLado1() {
         return lado1;
     }
@@ -65,6 +71,8 @@ public class Ficha implements Movible{
         this.estaVolteada = estaVolteada;
     }
 
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+
     /**
      * Método que suma los lados de la ficha
      * @return
@@ -75,13 +83,17 @@ public class Ficha implements Movible{
     }
 
     /**
-     * Método que regresa una cadena de los atributos(toString)
+     * Método que regresa una cadena de los atributos(toString, es decir simula la ficha en este caso en consola)
      * @return
      */
+    @Override
     public String toString()
     {
         return "[" + lado1 + "|" + lado2 + "]";
     }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////
+    //Métodos implementados de la clase Movible
 
     @Override
     public void rotateRight() {
