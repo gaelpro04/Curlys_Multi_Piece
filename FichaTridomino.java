@@ -1,3 +1,4 @@
+import java.util.Collections;
 
 //Clase hija FichaTridomino, que extiende a ficha e implementa Movible, es decir obtendrá todos los métodos de esta
 //misma clase
@@ -14,7 +15,7 @@ public class FichaTridomino extends Ficha implements Movible {
     public FichaTridomino(int lado1, int lado2, int lado3)
     {
         //Se utiliza de super para inicializar los dos atributos que se en ecuentran en Ficha
-        super(lado1,lado2);
+        super(lado1,lado2, 3);
         this.lado3 = lado3;
     }
 
@@ -27,7 +28,7 @@ public class FichaTridomino extends Ficha implements Movible {
      */
     public FichaTridomino(int lado1, int lado2, int lado3, boolean estaVolteada)
     {
-        super(lado1,lado2, estaVolteada);
+        super(lado1,lado2, estaVolteada, 3);
         this.lado3 = lado3;
     }
 
@@ -56,7 +57,20 @@ public class FichaTridomino extends Ficha implements Movible {
     @Override
     public String toString()
     {
-        return "[" + super.getLado1() + "|" + super.getLado2() + "|" + lado3 + "]";
+        if (super.getSentido().getFirst()) {
+            return  " |" + super.lado1 + "|\n" + "|" + lado3 + "|" + super.lado2 + "|";
+        } else if (super.getSentido().get(1)) {
+            return "|" + lado3 + "|" + super.lado1 + "|\n" + " |" + super.lado2 + "|";
+        } else if (super.getSentido().get(2)) {
+            return " |" + lado3 + "|\n" + "|" + super.lado2 + "|" + super.lado1 + "|";
+        } else if (super.getSentido().get(3)) {
+            return "|" + super.lado2 + "|" + lado3 + "|\n" + " |" + super.lado1 + "|";
+        } else if (super.getSentido().get(4)) {
+            return " |" + super.lado2 + "|\n" + "|" + super.lado1 + "|" + lado3 + "|";
+        } else if (super.getSentido().get(5)) {
+            return "|" + super.lado1 + "|" + super.lado2 + "|\n" + " |" + lado3 + "|";
+        }
+        return null;
     }
 
     ////////////////////////////////////////////////////////////////////////////////////
@@ -98,13 +112,27 @@ public class FichaTridomino extends Ficha implements Movible {
     @Override
     public void rotateRight()
     {
+        int index = super.getSentido().indexOf(true);
+        Collections.fill(super.getSentido(), false);
 
+        if (index == (getSentido().size() - 1)) {
+            super.getSentido().set(0,true);
+        } else {
+            super.getSentido().set((index+1), true);
+        }
     }
 
     @Override
     public void rotateLeft()
     {
+        int index = super.getSentido().indexOf(true);
+        Collections.fill(super.getSentido(),false);
 
+        if (index == 0) {
+            super.getSentido().set((getSentido().size()-1), true);
+        } else {
+            super.getSentido().set((index-1),true);
+        }
     }
 }
 

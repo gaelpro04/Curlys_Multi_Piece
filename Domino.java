@@ -28,7 +28,7 @@ public class Domino {
             //Se utilizan de dos ciclos para generar el domino donde el ciclo iterado toma como contador inicial i
             for (int i = 0; i <= 6; ++i) {
                 for (int j = i; j <= 6; ++j) {
-                    fichas.add(new Ficha(i,j,false));
+                    fichas.add(new Ficha(i,j,false, 2));
                 }
             }
         }
