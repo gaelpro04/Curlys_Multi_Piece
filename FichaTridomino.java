@@ -57,19 +57,34 @@ public class FichaTridomino extends Ficha implements Movible {
     @Override
     public String toString()
     {
-        if (super.getSentido().getFirst()) {
-            return  " |" + super.lado1 + "|\n" + "|" + lado3 + "|" + super.lado2 + "|";
-        } else if (super.getSentido().get(1)) {
-            return "|" + lado3 + "|" + super.lado1 + "|\n" + " |" + super.lado2 + "|";
-        } else if (super.getSentido().get(2)) {
-            return " |" + lado3 + "|\n" + "|" + super.lado2 + "|" + super.lado1 + "|";
-        } else if (super.getSentido().get(3)) {
-            return "|" + super.lado2 + "|" + lado3 + "|\n" + " |" + super.lado1 + "|";
-        } else if (super.getSentido().get(4)) {
-            return " |" + super.lado2 + "|\n" + "|" + super.lado1 + "|" + lado3 + "|";
-        } else if (super.getSentido().get(5)) {
-            return "|" + super.lado1 + "|" + super.lado2 + "|\n" + " |" + lado3 + "|";
+        //Si está volteada simplemente se imprime la ficha oculta tomando en cuenta su orientación
+        if (super.estaVolteada) {
+            //En este caso son tres casos los cuales tienen la misma posicion(pero no de números)
+            if (super.getSentido().get(1) || super.getSentido().get(3) || super.getSentido().get(5)) {
+                return "|   |\n | |";
+                //En dado caso que el sentido de la ficha no sea los anteriores simplemente se imprime de esta manera
+            } else {
+                return " | |\n|   |";
+            }
+
+            //En dado caso que no esté oculta simplemente se imprime la ficha completa de acuerdo al sentido
+            //que tiene
+        } else {
+            if (super.getSentido().getFirst()) {
+                return  " |" + super.lado1 + "|\n" + "|" + lado3 + "|" + super.lado2 + "|";
+            } else if (super.getSentido().get(1)) {
+                return "|" + lado3 + "|" + super.lado1 + "|\n" + " |" + super.lado2 + "|";
+            } else if (super.getSentido().get(2)) {
+                return " |" + lado3 + "|\n" + "|" + super.lado2 + "|" + super.lado1 + "|";
+            } else if (super.getSentido().get(3)) {
+                return "|" + super.lado2 + "|" + lado3 + "|\n" + " |" + super.lado1 + "|";
+            } else if (super.getSentido().get(4)) {
+                return " |" + super.lado2 + "|\n" + "|" + super.lado1 + "|" + lado3 + "|";
+            } else if (super.getSentido().get(5)) {
+                return "|" + super.lado1 + "|" + super.lado2 + "|\n" + " |" + lado3 + "|";
+            }
         }
+
         return null;
     }
 
@@ -86,21 +101,31 @@ public class FichaTridomino extends Ficha implements Movible {
         this.lado3 = lado3;
     }
 
+    @Override
+    public boolean isEstaVolteada()
+    {
+        return super.isEstaVolteada();
+    }
+
+    @Override
     public int getLado2()
     {
         return super.getLado2();
     }
 
+    @Override
     public void setLado2(int lado2)
     {
         super.setLado2(lado2);
     }
 
+    @Override
     public int getLado1()
     {
         return super.getLado1();
     }
 
+    @Override
     public void setLado1(int lado1)
     {
         super.setLado1(lado1);

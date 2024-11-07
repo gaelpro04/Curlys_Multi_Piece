@@ -35,6 +35,14 @@ public class Domino {
     }
 
     /**
+     * Método para obtener la cantidad de fichas
+     */
+    public int getTotalFichas()
+    {
+        return totalFichas;
+    }
+
+    /**
      * Método para obtener la colección de fichas y poder manipularla más sencillamente
      * @return
      */

@@ -100,16 +100,25 @@ public class Ficha implements Movible{
     @Override
     public String toString()
     {
-        if (sentido.getSentido().getFirst()) {
-            return "[" + lado1 + "|" + lado2 + "]";
-        } else if (sentido.getSentido().get(1)) {
-            return lado1 + "\n" + "-\n" + lado2;
-        } else if (sentido.getSentido().get(2)) {
-            return "[" + lado2 + "|" + lado1 + "]";
-        } else if (sentido.getSentido().get(3)) {
-            return lado2 + "\n" + "-\n" + lado1;
+        //Si está volteada regresará la ficha oculta, tomando en cuenta sus dos orientaciones
+        if (estaVolteada) {
+            if (sentido.getSentido().get(1) || sentido.getSentido().get(3)) {
+                return "\n-\n";
+            } else {
+                return "[   ]";
+            }
+            //En dado caso que no lo esté simplemente se imprime de acuerdo al sentido que tiene.
+        } else {
+            if (sentido.getSentido().getFirst()) {
+                return "[" + lado1 + "|" + lado2 + "]";
+            } else if (sentido.getSentido().get(1)) {
+                return lado1 + "\n" + "-\n" + lado2;
+            } else if (sentido.getSentido().get(2)) {
+                return "[" + lado2 + "|" + lado1 + "]";
+            } else if (sentido.getSentido().get(3)) {
+                return lado2 + "\n" + "-\n" + lado1;
+            }
         }
-
         return null;
     }
 

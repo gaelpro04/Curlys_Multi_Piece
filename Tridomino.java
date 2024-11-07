@@ -15,7 +15,7 @@ public class Tridomino {
     public Tridomino(boolean vacio)
     {
         //Formula para determinar el total de fichas de acuerdo al triple máximo del triDomino
-        totalFichas = ((6+1)*(6+2)*(6+3))/6;
+        totalFichas = ((5+1)*(5+2)*(5+3))/6;
 
         //Si es true, eso quiere decir que haremos una colección vacio
         if (vacio) {
@@ -28,14 +28,22 @@ public class Tridomino {
 
             //Ciclo para generar el tridomino, consta de tres que despues del primero empiezan con el contador del ciclo
             //anterior
-            for (int i = 0; i <= 6; ++i) {
-                for (int j = i; j <= 6; ++j) {
-                    for (int k = j; k <= 6; ++k) {
+            for (int i = 0; i <= 5; ++i) {
+                for (int j = i; j <= 5; ++j) {
+                    for (int k = j; k <= 5; ++k) {
                         fichas.add(new FichaTridomino(i,j,k,false));
                     }
                 }
             }
         }
+    }
+
+    /**
+     * Método para regresar la cantidad de fichas
+     */
+    public int getTotalFichas()
+    {
+        return totalFichas;
     }
 
     /**
@@ -52,17 +60,6 @@ public class Tridomino {
      */
     public void mostrarTridomino()
     {
-        int cont = 0;
-        for (FichaTridomino ficha : fichas) {
-
-
-            System.out.print(ficha.toString() + " ");
-            ++cont;
-            if (cont == 14) {
-                System.out.println();
-                cont = 0;
-            }
-
-        }
+        fichas.forEach(fichaTridomino -> System.out.println(fichaTridomino.toString()));
     }
 }
