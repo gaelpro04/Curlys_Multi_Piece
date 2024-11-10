@@ -1,6 +1,8 @@
 public class Main {
     public static void main(String[] args) {
 
-        new Juego().mezclarFichas();
+        Juego juego = new Juego();
+        juego.mezclarFichas();
+        juego.hacerManos();
     }
 }

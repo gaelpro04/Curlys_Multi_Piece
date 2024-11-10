@@ -32,6 +32,12 @@ public class FichaTridomino extends Ficha implements Movible {
         this.lado3 = lado3;
     }
 
+    public FichaTridomino(FichaTridomino fichaCopiada)
+    {
+        super(fichaCopiada.lado1, fichaCopiada.lado2, fichaCopiada.estaVolteada, 3);
+        this.lado3 = fichaCopiada.lado3;
+    }
+
     /**
      * Método que permite determinar si es triple, es decir sus tres lados iguales
      * @return
@@ -158,6 +164,12 @@ public class FichaTridomino extends Ficha implements Movible {
         } else {
             super.getSentido().set((index-1),true);
         }
+    }
+
+    @Override
+    public int getTotalSentidos()
+    {
+        return sentido.getSentido().size();
     }
 }
 

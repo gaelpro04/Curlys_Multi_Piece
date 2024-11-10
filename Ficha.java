@@ -38,6 +38,14 @@ public class Ficha implements Movible{
         this.estaVolteada = estaVolteada;
     }
 
+    public Ficha(Ficha fichaCopiada, int sentido)
+    {
+        this.sentido = new Sentidos(sentido);
+        this.lado1 = fichaCopiada.lado1;
+        this.lado2 = fichaCopiada.lado2;
+        this.estaVolteada = fichaCopiada.estaVolteada;
+    }
+
     /**
      * Método que verifica si es mula la ficha
      * @return
@@ -149,5 +157,11 @@ public class Ficha implements Movible{
         } else {
             sentido.getSentido().set((index-1),true);
         }
+    }
+
+    @Override
+    public int getTotalSentidos()
+    {
+        return sentido.getSentido().size();
     }
 }

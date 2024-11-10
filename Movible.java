@@ -7,4 +7,6 @@ public interface Movible {
 
     //Método para girar a la izquierda
     public void rotateLeft();
+
+    public int getTotalSentidos();
 }

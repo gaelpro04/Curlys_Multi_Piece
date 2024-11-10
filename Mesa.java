@@ -22,7 +22,19 @@ public class Mesa {
      */
     public void visualizarPozo()
     {
-        pozo.forEach(ficha -> System.out.println(ficha.toString()));
+        //En este caso no utilizamos lambdas ya que ocupamos enumerar cada ficha para
+        //despues se tenga que elegir una, se haga mediante el indice seleccionado
+
+        if (!pozo.isEmpty()) {
+            for (int i = 0; i < pozo.size(); i++) {
+                System.out.println("[" + i + "]=============== \n" + pozo.get(i).toString());
+            }
+        } else {
+            System.out.println("El pozo está vacio");
+        }
+
+
+
     }
 
     /**

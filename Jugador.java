@@ -53,14 +53,10 @@ public class Jugador {
     public void visualizarMano()
     {
         int cont = 0;
-        for (Ficha ficha : mano) {
-            System.out.print(ficha.toString());
-            ++cont;
-            if (cont == 6) {
-                System.out.println();
-                cont = 0;
-            }
+        for (int i = 0; i < mano.size(); i++) {
+            System.out.println("[" + i + "]=============== \n" + mano.get(i).toString());
         }
+
     }
 
     /**
