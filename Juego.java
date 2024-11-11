@@ -80,8 +80,10 @@ public class Juego {
         Ficha fichaColocada;
         if (fichaColocadaJ1.sumaLados() > fichaColocadaJ2.sumaLados()) {
             fichaColocada = fichaColocadaJ1;
+            jugadores.getFirst().getMano().remove(fichaColocada);
         } else {
             fichaColocada = fichaColocadaJ2;
+            jugadores.get(1).getMano().remove(fichaColocada);
         }
 
         System.out.println("Como la quieres colocar");
@@ -924,11 +926,38 @@ public class Juego {
         for (Jugador jugador : jugadores) {
             for (Ficha ficha : jugador.getMano()) {
                 if (verificarFicha(ficha)) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
+    }
+
+    /**
+     * Método para determinar si ninguna ficha es valida
+     */
+    private boolean fichasValidasJugador(Jugador jugadorActual)
+    {
+        for (Ficha fichas : jugadorActual.getMano()) {
+            if (verificarFicha(fichas)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean fichasValidasPozo()
+    {
+        if (!mesa.getPozo().isEmpty()) {
+            for (Ficha ficha : mesa.getPozo()) {
+                if (verificarFicha(ficha)) {
+                    return true;
+                }
+            }
+        } else {
+            return false;
+        }
+        return false;
     }
 
     /**
@@ -938,18 +967,20 @@ public class Juego {
      */
     private boolean yaAcaboJuego()
     {
-        if (manosVacias() || fichasValidas()) {
-            return true;
-        }
-        return false;
+        return manosVacias() || fichasValidas() || fichasValidasPozo();
     }
 
     /**
-     * Método para determinar un ganador
+     * Método para determinar el ganador
      */
     private Jugador determinarGanador()
     {
-        return new Jugador("arre");
+        for (Jugador jugador : jugadores) {
+            if (jugador.getMano().isEmpty()) {
+                return jugador;
+            }
+        }
+        return jugadores.getFirst().getPuntuacion() > jugadores.get(1).getPuntuacion() ? jugadores.getFirst() : jugadores.get(1);
     }
 
     /**
@@ -968,23 +999,29 @@ public class Juego {
             Jugador jugadorActual = jugadores.get(turnoActual);
             System.out.println("===Turno de " + jugadorActual.getNombre() + "====");
 
-            if (mesa.getTablero().isEmpty() && jugadorActual.getMano().size() < 10) {
+            if (mesa.getTablero().isEmpty() && jugadorActual.getMano().size() == 10) {
                 jugadorActual.visualizarMano();
                 System.out.println("Ingresa tu primera ficha(indice)");
-                primerasFichas.add(jugadorActual.getMano().remove(sc.nextInt()));
+                primerasFichas.add(jugadorActual.getMano().get(sc.nextInt()));
             } else {
                 if (mesa.getTablero().isEmpty()) {
+
                     colocarPrimeraFicha(primerasFichas.get(0), primerasFichas.get(1));
                 } else {
-                    jugadorActual.visualizarMano();
-                    System.out.println("Ingresa una ficha");
-                    int index = sc.nextInt();
-                    if (verificarFicha(jugadorActual.getMano().get(index))) {
-                        colocarFicha(jugadorActual.getMano().remove(index));
-                        if (jugadorActual.getMano().isEmpty()) {
-
+                    if (fichasValidasJugador(jugadorActual)) {
+                        jugadorActual.visualizarMano();
+                        System.out.println("Ingresa una ficha");
+                        int index = sc.nextInt();
+                        if (verificarFicha(jugadorActual.getMano().get(index))) {
+                            colocarFicha(jugadorActual.getMano().remove(index));
+                            //PRIMER CASO DE TERMINACIÓN DE JUEGO
+                            if (yaAcaboJuego()) {
+                                Jugador ganador = determinarGanador();
+                            }
                         }
+
                     } else {
+                        int index;
                         if (!mesa.getPozo().isEmpty()) {
                             System.out.println("No tienes fichas validas");
                             System.out.println("Presiona enter para obtener dos fichas");
@@ -1003,8 +1040,8 @@ public class Juego {
                                     }
                                 }
                             } else {
-
-
+                                System.out.println("Las nuevas fichas añadidas no son validas, presione enter para seguir");
+                                sc.nextLine();
                             }
 
                         } else {
