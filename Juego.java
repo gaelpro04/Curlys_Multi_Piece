@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Scanner;
 
@@ -60,6 +61,13 @@ public class Juego {
             }
             for (int i = 0;i < fichasTriples; ++i) {
                 jugador.getMano().add(domino.getDomino().removeFirst());
+            }
+
+            for (int i = 0; i < tridomino.getTridomino().size(); ++i) {
+                mesa.getPozo().add(tridomino.getTridomino().removeFirst());
+            }
+            for (int i = 0; i < domino.getDomino().size(); ++i) {
+                mesa.getPozo().add(domino.getDomino().removeFirst());
             }
         }
 
@@ -897,14 +905,51 @@ public class Juego {
     /**
      * Método para determinar si ya acabó el juego
      */
-    private boolean yaAcaboElJuego()
+    private boolean manosVacias()
     {
         for (Jugador jugador : jugadores) {
             if (jugador.getMano().isEmpty()) {
                 return true;
             }
         }
+
         return false;
+    }
+
+    /**
+     * Método para determinar si ninguna ficha es valida
+     */
+    private boolean fichasValidas()
+    {
+        for (Jugador jugador : jugadores) {
+            for (Ficha ficha : jugador.getMano()) {
+                if (verificarFicha(ficha)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
+     * Trabaja en conjunto con los demás métodos verificadores, método para saber si ya cabo
+     * el juego
+     * @return
+     */
+    private boolean yaAcaboJuego()
+    {
+        if (manosVacias() || fichasValidas()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Método para determinar un ganador
+     */
+    private Jugador determinarGanador()
+    {
+        return new Jugador("arre");
     }
 
     /**
@@ -916,10 +961,58 @@ public class Juego {
         int turnoActual = 0;
         mezclarFichas();
         hacerManos();
+        ArrayList<Ficha> primerasFichas = new ArrayList<>(2);
+        Scanner sc = new Scanner(System.in);
 
         while (noTermino) {
             Jugador jugadorActual = jugadores.get(turnoActual);
+            System.out.println("===Turno de " + jugadorActual.getNombre() + "====");
 
+            if (mesa.getTablero().isEmpty() && jugadorActual.getMano().size() < 10) {
+                jugadorActual.visualizarMano();
+                System.out.println("Ingresa tu primera ficha(indice)");
+                primerasFichas.add(jugadorActual.getMano().remove(sc.nextInt()));
+            } else {
+                if (mesa.getTablero().isEmpty()) {
+                    colocarPrimeraFicha(primerasFichas.get(0), primerasFichas.get(1));
+                } else {
+                    jugadorActual.visualizarMano();
+                    System.out.println("Ingresa una ficha");
+                    int index = sc.nextInt();
+                    if (verificarFicha(jugadorActual.getMano().get(index))) {
+                        colocarFicha(jugadorActual.getMano().remove(index));
+                        if (jugadorActual.getMano().isEmpty()) {
+
+                        }
+                    } else {
+                        if (!mesa.getPozo().isEmpty()) {
+                            System.out.println("No tienes fichas validas");
+                            System.out.println("Presiona enter para obtener dos fichas");
+                            sc.nextLine();
+                            for (int i = 0; i < 2; ++i) {
+                                jugadorActual.getMano().add(mesa.getPozo().removeFirst());
+                            }
+                            if (verificarFicha(jugadorActual.getMano().getLast()) || verificarFicha(jugadorActual.getMano().get(jugadorActual.getMano().size() - 2))) {
+                                jugadorActual.visualizarMano();
+                                System.out.println("Ingresa una ficha");
+                                index = sc.nextInt();
+                                if (verificarFicha(jugadorActual.getMano().get(index))) {
+                                    colocarFicha(jugadorActual.getMano().remove(index));
+                                    if (yaAcaboJuego()) {
+
+                                    }
+                                }
+                            } else {
+
+
+                            }
+
+                        } else {
+
+                        }
+                    }
+                }
+            }
 
 
 
