@@ -120,11 +120,11 @@ public class Ficha implements Movible{
             if (sentido.getSentido().getFirst()) {
                 return "[" + lado1 + "|" + lado2 + "]";
             } else if (sentido.getSentido().get(1)) {
-                return lado1 + "\n" + "-\n" + lado2;
+                return "  " + lado1 + "\n" + "  -\n  " + lado2;
             } else if (sentido.getSentido().get(2)) {
                 return "[" + lado2 + "|" + lado1 + "]";
             } else if (sentido.getSentido().get(3)) {
-                return lado2 + "\n" + "-\n" + lado1;
+                return "  " + lado2 + "\n" + "  -\n  " + lado1;
             }
         }
         return null;

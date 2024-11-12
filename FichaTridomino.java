@@ -54,9 +54,9 @@ public class FichaTridomino extends Ficha implements Movible {
      * Método que sirve para sumar los lados de la ficha
      * @return
      */
-    public int sumarLados()
+    public int sumaLados()
     {
-        return sumaLados() + lado3;
+        return super.lado1 + super.lado2 + lado3;
     }
 
     //Método para obtener los atributos a String(Simula la trificha)

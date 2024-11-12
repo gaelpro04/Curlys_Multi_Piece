@@ -42,7 +42,15 @@ public class Mesa {
      */
     public void visualizarTablero()
     {
-        tablero.forEach(ficha -> System.out.println(ficha.toString()));
+        if (!tablero.isEmpty()) {
+            System.out.println();
+            for (int i = 0; i < tablero.size(); i++) {
+                System.out.println(tablero.get(i).toString());
+            }
+        } else {
+            System.out.println("El tablero está vacio");
+        }
+        System.out.println();
     }
 
     //////////////////////////////////////////////////////////////////////////////
