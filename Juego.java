@@ -369,14 +369,9 @@ public class Juego {
                             } else {
                                 System.out.println("Ficha no valida");
                             }
+
                         } else {
-                            if (fichaAnterior.getLado1() == fichaColocadaN.getLado1()) {
-                                mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado1() == fichaAnterior.getLado1()) {
-                                fichaColocadaN.rotateRight();
-                                mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
-                                fichaColocadaN.rotateRight();
+                            if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado1() == fichaAnterior.getLado1()) {
                                 fichaColocadaN.rotateRight();
                                 mesa.getTablero().add(fichaColocadaN);
                             } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado3() == fichaAnterior.getLado1()) {
@@ -384,12 +379,18 @@ public class Juego {
                                 fichaColocadaN.rotateRight();
                                 fichaColocadaN.rotateRight();
                                 mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado1() && fichaColocadaN.getLado2() == fichaAnterior.getLado1()) {
+                                fichaColocadaN.rotateLeft();
+                                mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado1()) {
+                                mesa.getTablero().add(fichaColocadaN);
                             } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado2()) {
                                 fichaColocadaN.rotateLeft();
                                 fichaColocadaN.rotateLeft();
                                 mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado1() && fichaColocadaN.getLado2() == fichaAnterior.getLado1()) {
-                                fichaColocadaN.rotateLeft();
+                            } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
+                                fichaColocadaN.rotateRight();
+                                fichaColocadaN.rotateRight();
                                 mesa.getTablero().add(fichaColocadaN);
                             } else {
                                 System.out.println("Ficha no valida");
@@ -401,17 +402,7 @@ public class Juego {
                     if (fichaAnterior.getSentido().getFirst() || fichaAnterior.getSentido().get(2) || fichaAnterior.getSentido().get(4)) {
                         if (fichaAnterior.getSentido().getFirst()) {
                             if (fichaAnterior.getLado3() == fichaAnterior.getLado2()) {
-                                if (fichaColocadaN.getLado1() == fichaAnterior.getLado3()) {
-                                    mesa.getTablero().add(fichaColocadaN);
-                                } else if (fichaColocadaN.getLado3() == fichaAnterior.getLado3()) {
-                                    fichaColocadaN.rotateRight();
-                                    fichaColocadaN.rotateRight();
-                                    mesa.getTablero().add(fichaColocadaN);
-                                } else if (fichaColocadaN.getLado2() == fichaAnterior.getLado3()) {
-                                    fichaColocadaN.rotateLeft();
-                                    fichaColocadaN.rotateLeft();
-                                    mesa.getTablero().add(fichaColocadaN);
-                                } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado3() == fichaColocadaN.getLado3()) {
+                                if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado3() == fichaColocadaN.getLado3()) {
                                     fichaColocadaN.rotateRight();
                                     mesa.getTablero().add(fichaColocadaN);
                                 } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado2() && fichaAnterior.getLado3() == fichaColocadaN.getLado3()) {
@@ -419,7 +410,17 @@ public class Juego {
                                     fichaColocadaN.rotateRight();
                                     fichaColocadaN.rotateRight();
                                     mesa.getTablero().add(fichaColocadaN);
-                                } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaAnterior.getLado3() == fichaColocadaN.getLado2()) {
+                                } else if ( fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaAnterior.getLado3() == fichaColocadaN.getLado2()) {
+                                    fichaColocadaN.rotateLeft();
+                                    mesa.getTablero().add(fichaColocadaN);
+                                } else if (fichaColocadaN.getLado1() == fichaAnterior.getLado3()) {
+                                    mesa.getTablero().add(fichaColocadaN);
+                                } else if (fichaColocadaN.getLado3() == fichaAnterior.getLado3()) {
+                                    fichaColocadaN.rotateRight();
+                                    fichaColocadaN.rotateRight();
+                                    mesa.getTablero().add(fichaColocadaN);
+                                } else if (fichaColocadaN.getLado2() == fichaAnterior.getLado3()) {
+                                    fichaColocadaN.rotateLeft();
                                     fichaColocadaN.rotateLeft();
                                     mesa.getTablero().add(fichaColocadaN);
                                 } else {
@@ -441,17 +442,7 @@ public class Juego {
                             }
                         } else if (fichaAnterior.getSentido().get(2)) {
                             if (fichaAnterior.getLado1() == fichaAnterior.getLado2()) {
-                                if (fichaColocadaN.getLado1() == fichaAnterior.getLado2()) {
-                                    mesa.getTablero().add(fichaColocadaN);
-                                } else if (fichaColocadaN.getLado3() == fichaAnterior.getLado2()) {
-                                    fichaColocadaN.rotateRight();
-                                    fichaColocadaN.rotateRight();
-                                    mesa.getTablero().add(fichaColocadaN);
-                                } else if (fichaColocadaN.getLado2() == fichaAnterior.getLado2()) {
-                                    fichaColocadaN.rotateLeft();
-                                    fichaColocadaN.rotateLeft();
-                                    mesa.getTablero().add(fichaColocadaN);
-                                } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
+                                if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
                                     fichaColocadaN.rotateRight();
                                     mesa.getTablero().add(fichaColocadaN);
                                 } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado2() && fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
@@ -460,6 +451,16 @@ public class Juego {
                                     fichaColocadaN.rotateRight();
                                     mesa.getTablero().add(fichaColocadaN);
                                 } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaAnterior.getLado2() == fichaColocadaN.getLado2()) {
+                                    fichaColocadaN.rotateLeft();
+                                    mesa.getTablero().add(fichaColocadaN);
+                                } else if (fichaColocadaN.getLado1() == fichaAnterior.getLado2()) {
+                                    mesa.getTablero().add(fichaColocadaN);
+                                } else if (fichaColocadaN.getLado3() == fichaAnterior.getLado2()) {
+                                    fichaColocadaN.rotateRight();
+                                    fichaColocadaN.rotateRight();
+                                    mesa.getTablero().add(fichaColocadaN);
+                                } else if (fichaColocadaN.getLado2() == fichaAnterior.getLado2()) {
+                                    fichaColocadaN.rotateLeft();
                                     fichaColocadaN.rotateLeft();
                                     mesa.getTablero().add(fichaColocadaN);
                                 } else {
@@ -481,17 +482,7 @@ public class Juego {
                             }
                         } else {
                             if (fichaAnterior.getLado1() == fichaAnterior.getLado3()) {
-                                if (fichaColocadaN.getLado1() == fichaAnterior.getLado1()) {
-                                    mesa.getTablero().add(fichaColocadaN);
-                                } else if (fichaColocadaN.getLado3() == fichaAnterior.getLado1()) {
-                                    fichaColocadaN.rotateRight();
-                                    fichaColocadaN.rotateRight();
-                                    mesa.getTablero().add(fichaColocadaN);
-                                } else if (fichaColocadaN.getLado2() == fichaAnterior.getLado1()) {
-                                    fichaColocadaN.rotateLeft();
-                                    fichaColocadaN.rotateLeft();
-                                    mesa.getTablero().add(fichaColocadaN);
-                                } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
+                                if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
                                     fichaColocadaN.rotateRight();
                                     mesa.getTablero().add(fichaColocadaN);
                                 } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado2() && fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
@@ -500,6 +491,16 @@ public class Juego {
                                     fichaColocadaN.rotateRight();
                                     mesa.getTablero().add(fichaColocadaN);
                                 } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaAnterior.getLado1() == fichaColocadaN.getLado2()) {
+                                    fichaColocadaN.rotateLeft();
+                                    mesa.getTablero().add(fichaColocadaN);
+                                } else if (fichaColocadaN.getLado1() == fichaAnterior.getLado1()) {
+                                    mesa.getTablero().add(fichaColocadaN);
+                                } else if (fichaColocadaN.getLado3() == fichaAnterior.getLado1()) {
+                                    fichaColocadaN.rotateRight();
+                                    fichaColocadaN.rotateRight();
+                                    mesa.getTablero().add(fichaColocadaN);
+                                } else if (fichaColocadaN.getLado2() == fichaAnterior.getLado1()) {
+                                    fichaColocadaN.rotateLeft();
                                     fichaColocadaN.rotateLeft();
                                     mesa.getTablero().add(fichaColocadaN);
                                 } else {
@@ -522,7 +523,18 @@ public class Juego {
                         }
                     } else {
                         if (fichaAnterior.getSentido().get(1)) {
-                            if (fichaAnterior.getLado2() == fichaColocadaN.getLado1()) {
+                            if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado3() == fichaAnterior.getLado2()) {
+                                fichaColocadaN.rotateRight();
+                                mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado2() == fichaAnterior.getLado2()) {
+                                fichaColocadaN.rotateRight();
+                                fichaColocadaN.rotateRight();
+                                fichaColocadaN.rotateRight();
+                                mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaColocadaN.getLado1() == fichaAnterior.getLado2()) {
+                                fichaColocadaN.rotateLeft();
+                                mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado1()) {
                                 mesa.getTablero().add(fichaColocadaN);
                             } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
                                 fichaColocadaN.rotateRight();
@@ -532,21 +544,22 @@ public class Juego {
                                 fichaColocadaN.rotateLeft();
                                 fichaColocadaN.rotateLeft();
                                 mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado3() == fichaAnterior.getLado2()) {
-                                fichaColocadaN.rotateRight();
-                                mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado2() == fichaAnterior.getLado2()) {
-                                fichaColocadaN.rotateRight();
-                                fichaColocadaN.rotateRight();
-                                mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaColocadaN.getLado1() == fichaAnterior.getLado2()) {
-                                fichaColocadaN.rotateLeft();
-                                mesa.getTablero().add(fichaColocadaN);
                             } else {
                                 System.out.println("Ficha no valida");
                             }
                         } else if (fichaAnterior.getSentido().get(3)) {
-                            if (fichaAnterior.getLado1() == fichaColocadaN.getLado1()) {
+                            if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado3() == fichaAnterior.getLado1()) {
+                                fichaColocadaN.rotateRight();
+                                mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado2() == fichaAnterior.getLado1()) {
+                                fichaColocadaN.rotateRight();
+                                fichaColocadaN.rotateRight();
+                                fichaColocadaN.rotateRight();
+                                mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaColocadaN.getLado1() == fichaAnterior.getLado1()) {
+                                fichaColocadaN.rotateLeft();
+                                mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado1()) {
                                 mesa.getTablero().add(fichaColocadaN);
                             } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
                                 fichaColocadaN.rotateRight();
@@ -556,21 +569,22 @@ public class Juego {
                                 fichaColocadaN.rotateLeft();
                                 fichaColocadaN.rotateLeft();
                                 mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado3() == fichaAnterior.getLado1()) {
-                                fichaColocadaN.rotateRight();
-                                mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado2() == fichaAnterior.getLado1()) {
-                                fichaColocadaN.rotateRight();
-                                fichaColocadaN.rotateRight();
-                                mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaColocadaN.getLado1() == fichaAnterior.getLado1()) {
-                                fichaColocadaN.rotateLeft();
-                                mesa.getTablero().add(fichaColocadaN);
                             } else {
                                 System.out.println("Ficha no valida");
                             }
                         } else {
-                            if (fichaAnterior.getLado3() == fichaColocadaN.getLado1()) {
+                            if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado3() == fichaAnterior.getLado3()) {
+                                fichaColocadaN.rotateRight();
+                                mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado2() == fichaAnterior.getLado3()) {
+                                fichaColocadaN.rotateRight();
+                                fichaColocadaN.rotateRight();
+                                fichaColocadaN.rotateRight();
+                                mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaColocadaN.getLado1() == fichaAnterior.getLado3()) {
+                                fichaColocadaN.rotateLeft();
+                                mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaAnterior.getLado3() == fichaColocadaN.getLado1()) {
                                 mesa.getTablero().add(fichaColocadaN);
                             } else if (fichaAnterior.getLado3() == fichaColocadaN.getLado3()) {
                                 fichaColocadaN.rotateRight();
@@ -578,16 +592,6 @@ public class Juego {
                                 mesa.getTablero().add(fichaColocadaN);
                             } else if (fichaAnterior.getLado3() == fichaColocadaN.getLado2()) {
                                 fichaColocadaN.rotateLeft();
-                                fichaColocadaN.rotateLeft();
-                                mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado3() == fichaAnterior.getLado3()) {
-                                fichaColocadaN.rotateRight();
-                                mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado2() == fichaAnterior.getLado3()) {
-                                fichaColocadaN.rotateRight();
-                                fichaColocadaN.rotateRight();
-                                mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaColocadaN.getLado1() == fichaAnterior.getLado3()) {
                                 fichaColocadaN.rotateLeft();
                                 mesa.getTablero().add(fichaColocadaN);
                             } else {
@@ -764,17 +768,17 @@ public class Juego {
                                 return true;
                             }
                         } else {
-                            if (fichaAnterior.getLado1() == fichaColocadaN.getLado1()) {
-                                return true;
-                            } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado1() == fichaAnterior.getLado1()) {
-                                return true;
-                            } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
+                            if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado1() == fichaAnterior.getLado1()) {
                                 return true;
                             } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado3() == fichaAnterior.getLado1()) {
                                 return true;
+                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado1() && fichaColocadaN.getLado2() == fichaAnterior.getLado1()) {
+                                return true;
+                            } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado1()) {
+                                return true;
                             } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado2()) {
                                 return true;
-                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado1() && fichaColocadaN.getLado2() == fichaAnterior.getLado1()) {
+                            } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
                                 return true;
                             }
                         }
@@ -784,17 +788,17 @@ public class Juego {
                     if (fichaAnterior.getSentido().getFirst() || fichaAnterior.getSentido().get(2) || fichaAnterior.getSentido().get(4)) {
                         if (fichaAnterior.getSentido().getFirst()) {
                             if (fichaAnterior.getLado3() == fichaAnterior.getLado2()) {
-                                if (fichaColocadaN.getLado1() == fichaAnterior.getLado3()) {
+                                if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado3() == fichaColocadaN.getLado3()) {
+                                    return true;
+                                } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado2() && fichaAnterior.getLado3() == fichaColocadaN.getLado3()) {
+                                    return true;
+                                } else if ( fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaAnterior.getLado3() == fichaColocadaN.getLado2()) {
+                                    return true;
+                                } else if (fichaColocadaN.getLado1() == fichaAnterior.getLado3()) {
                                     return true;
                                 } else if (fichaColocadaN.getLado3() == fichaAnterior.getLado3()) {
                                     return true;
                                 } else if (fichaColocadaN.getLado2() == fichaAnterior.getLado3()) {
-                                    return true;
-                                } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado3() == fichaColocadaN.getLado3()) {
-                                    return true;
-                                } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado2() && fichaAnterior.getLado3() == fichaColocadaN.getLado3()) {
-                                    return true;
-                                } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaAnterior.getLado3() == fichaColocadaN.getLado2()) {
                                     return true;
                                 }
                             } else if (fichaAnterior.getLado3() == fichaColocadaN.getLado3() && fichaAnterior.getLado2() == fichaColocadaN.getLado1()) {
@@ -806,17 +810,17 @@ public class Juego {
                             }
                         } else if (fichaAnterior.getSentido().get(2)) {
                             if (fichaAnterior.getLado1() == fichaAnterior.getLado2()) {
-                                if (fichaColocadaN.getLado1() == fichaAnterior.getLado2()) {
-                                    return true;
-                                } else if (fichaColocadaN.getLado3() == fichaAnterior.getLado2()) {
-                                    return true;
-                                } else if (fichaColocadaN.getLado2() == fichaAnterior.getLado2()) {
-                                    return true;
-                                } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
+                                if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
                                     return true;
                                 } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado2() && fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
                                     return true;
                                 } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaAnterior.getLado2() == fichaColocadaN.getLado2()) {
+                                    return true;
+                                } else if (fichaColocadaN.getLado1() == fichaAnterior.getLado2()) {
+                                    return true;
+                                } else if (fichaColocadaN.getLado3() == fichaAnterior.getLado2()) {
+                                    return true;
+                                } else if (fichaColocadaN.getLado2() == fichaAnterior.getLado2()) {
                                     return true;
                                 }
                             } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado3() && fichaAnterior.getLado1() == fichaColocadaN.getLado1()) {
@@ -828,17 +832,17 @@ public class Juego {
                             }
                         } else {
                             if (fichaAnterior.getLado1() == fichaAnterior.getLado3()) {
-                                if (fichaColocadaN.getLado1() == fichaAnterior.getLado1()) {
-                                    return true;
-                                } else if (fichaColocadaN.getLado3() == fichaAnterior.getLado1()) {
-                                    return true;
-                                } else if (fichaColocadaN.getLado2() == fichaAnterior.getLado1()) {
-                                    return true;
-                                } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
+                                if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
                                     return true;
                                 } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado2() && fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
                                     return true;
                                 } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaAnterior.getLado1() == fichaColocadaN.getLado2()) {
+                                    return true;
+                                } else if (fichaColocadaN.getLado1() == fichaAnterior.getLado1()) {
+                                    return true;
+                                } else if (fichaColocadaN.getLado3() == fichaAnterior.getLado1()) {
+                                    return true;
+                                } else if (fichaColocadaN.getLado2() == fichaAnterior.getLado1()) {
                                     return true;
                                 }
                             } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado3() && fichaAnterior.getLado3() == fichaColocadaN.getLado1()) {
@@ -851,45 +855,45 @@ public class Juego {
                         }
                     } else {
                         if (fichaAnterior.getSentido().get(1)) {
-                            if (fichaAnterior.getLado2() == fichaColocadaN.getLado1()) {
-                                return true;
-                            } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
-                                return true;
-                            } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado2()) {
-                                return true;
-                            } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado3() == fichaAnterior.getLado2()) {
+                            if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado3() == fichaAnterior.getLado2()) {
                                 return true;
                             } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado2() == fichaAnterior.getLado2()) {
                                 return true;
                             } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaColocadaN.getLado1() == fichaAnterior.getLado2()) {
                                 return true;
+                            } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado1()) {
+                                return true;
+                            } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
+                                return true;
+                            } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado2()) {
+                                return true;
                             }
                         } else if (fichaAnterior.getSentido().get(3)) {
-                            if (fichaAnterior.getLado1() == fichaColocadaN.getLado1()) {
-                                return true;
-                            } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
-                                return true;
-                            } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado2()) {
-                                return true;
-                            } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado3() == fichaAnterior.getLado1()) {
+                            if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado3() == fichaAnterior.getLado1()) {
                                 return true;
                             } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado2() == fichaAnterior.getLado1()) {
                                 return true;
                             } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaColocadaN.getLado1() == fichaAnterior.getLado1()) {
                                 return true;
+                            } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado1()) {
+                                return true;
+                            } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado3()) {
+                                return true;
+                            } else if (fichaAnterior.getLado1() == fichaColocadaN.getLado2()) {
+                                return true;
                             }
                         } else {
-                            if (fichaAnterior.getLado3() == fichaColocadaN.getLado1()) {
-                                return true;
-                            } else if (fichaAnterior.getLado3() == fichaColocadaN.getLado3()) {
-                                return true;
-                            } else if (fichaAnterior.getLado3() == fichaColocadaN.getLado2()) {
-                                return true;
-                            } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado3() == fichaAnterior.getLado3()) {
+                            if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado3() == fichaAnterior.getLado3()) {
                                 return true;
                             } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado2() == fichaAnterior.getLado3()) {
                                 return true;
                             } else if (fichaColocadaN.getLado1() == fichaColocadaN.getLado2() && fichaColocadaN.getLado1() == fichaAnterior.getLado3()) {
+                                return true;
+                            } else if (fichaAnterior.getLado3() == fichaColocadaN.getLado1()) {
+                                return true;
+                            } else if (fichaAnterior.getLado3() == fichaColocadaN.getLado3()) {
+                                return true;
+                            } else if (fichaAnterior.getLado3() == fichaColocadaN.getLado2()) {
                                 return true;
                             }
                         }
@@ -983,6 +987,7 @@ public class Juego {
             return true;
         } else if (!fichasValidas()) {
             if (!fichasValidasPozo()) {
+                System.out.println("====Pozo====");
                 mesa.visualizarPozo();
                 return true;
             }
