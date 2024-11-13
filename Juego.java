@@ -286,7 +286,7 @@ public class Juego {
                 if (mesa.getTablero().get(ultimaFichaIndex).getTotalSentidos() == 4) {
                     Ficha fichaAnterior = mesa.getTablero().get(ultimaFichaIndex);
 
-                    if (fichaAnterior.getSentido().getFirst() && fichaAnterior.getSentido().get(2)) {
+                    if (fichaAnterior.getSentido().getFirst() || fichaAnterior.getSentido().get(2)) {
                         if (fichaAnterior.esMula()) {
                             if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
                                 fichaColocadaN.rotateRight();
@@ -345,13 +345,7 @@ public class Juego {
                         }
                     } else {
                         if (fichaAnterior.getSentido().get(1)) {
-                            if (fichaAnterior.getLado2() == fichaColocadaN.getLado1()) {
-                                mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado1() == fichaAnterior.getLado2()) {
-                                fichaColocadaN.rotateRight();
-                                mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
-                                fichaColocadaN.rotateRight();
+                            if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado1() == fichaAnterior.getLado2()) {
                                 fichaColocadaN.rotateRight();
                                 mesa.getTablero().add(fichaColocadaN);
                             } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado3() == fichaAnterior.getLado2()) {
@@ -359,12 +353,18 @@ public class Juego {
                                 fichaColocadaN.rotateRight();
                                 fichaColocadaN.rotateRight();
                                 mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado1() && fichaColocadaN.getLado2() == fichaAnterior.getLado2()) {
+                                fichaColocadaN.rotateLeft();
+                                mesa.getTablero().add(fichaColocadaN);
+                            } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado1()) {
+                                mesa.getTablero().add(fichaColocadaN);
                             } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado2()) {
                                 fichaColocadaN.rotateLeft();
                                 fichaColocadaN.rotateLeft();
                                 mesa.getTablero().add(fichaColocadaN);
-                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado1() && fichaColocadaN.getLado2() == fichaAnterior.getLado2()) {
-                                fichaColocadaN.rotateLeft();
+                            } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
+                                fichaColocadaN.rotateRight();
+                                fichaColocadaN.rotateRight();
                                 mesa.getTablero().add(fichaColocadaN);
                             } else {
                                 System.out.println("Ficha no valida");
@@ -720,7 +720,7 @@ public class Juego {
                 if (mesa.getTablero().get(ultimaFichaIndex).getTotalSentidos() == 4) {
                     Ficha fichaAnterior = mesa.getTablero().get(ultimaFichaIndex);
 
-                    if (fichaAnterior.getSentido().getFirst() && fichaAnterior.getSentido().get(2)) {
+                    if (fichaAnterior.getSentido().getFirst() || fichaAnterior.getSentido().get(2)) {
                         if (fichaAnterior.esMula()) {
                             if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
                                 return true;
@@ -754,17 +754,17 @@ public class Juego {
                         }
                     } else {
                         if (fichaAnterior.getSentido().get(1)) {
-                            if (fichaAnterior.getLado2() == fichaColocadaN.getLado1()) {
-                                return true;
-                            } else if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado1() == fichaAnterior.getLado2()) {
-                                return true;
-                            } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
+                            if (fichaColocadaN.getLado3() == fichaColocadaN.getLado1() && fichaColocadaN.getLado1() == fichaAnterior.getLado2()) {
                                 return true;
                             } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado3() && fichaColocadaN.getLado3() == fichaAnterior.getLado2()) {
                                 return true;
+                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado1() && fichaColocadaN.getLado2() == fichaAnterior.getLado2()) {
+                                return true;
+                            } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado1()) {
+                                return true;
                             } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado2()) {
                                 return true;
-                            } else if (fichaColocadaN.getLado2() == fichaColocadaN.getLado1() && fichaColocadaN.getLado2() == fichaAnterior.getLado2()) {
+                            } else if (fichaAnterior.getLado2() == fichaColocadaN.getLado3()) {
                                 return true;
                             }
                         } else {
@@ -1046,7 +1046,6 @@ public class Juego {
             } else {
 
                 if (mesa.getTablero().isEmpty()) {
-                    System.out.println("arre");
                     colocarPrimeraFicha(primerasFichas.get(0), primerasFichas.get(1));
                 } else {
                     if (fichasValidasJugador(jugadorActual)) {
@@ -1056,7 +1055,6 @@ public class Juego {
                             System.out.println("Ingresa una ficha");
                             index = sc.nextInt();
                             if (verificarFicha(jugadorActual.getMano().get(index))) {
-                                System.out.println("Si es valida");
                                 sumarPuntos(jugadorActual.getMano().get(index), jugadorActual);
                                 colocarFicha(jugadorActual.getMano().remove(index));
                                 //PRIMER CASO DE TERMINACIÓN DE JUEGO
@@ -1077,6 +1075,7 @@ public class Juego {
                             System.out.println("No tienes fichas validas");
                             System.out.println("Presiona enter para obtener dos fichas");
                             sc.nextLine();
+                            sc.nextLine();
                             for (int i = 0; i < 2; ++i) {
                                 jugadorActual.getMano().add(mesa.getPozo().removeFirst());
                             }
@@ -1086,7 +1085,6 @@ public class Juego {
 
                                 do {
                                     index = sc.nextInt();
-                                    sc.nextLine();
                                     if (verificarFicha(jugadorActual.getMano().get(index))) {
                                         sumarPuntos(jugadorActual.getMano().get(index), jugadorActual);
                                         colocarFicha(jugadorActual.getMano().remove(index));
@@ -1102,6 +1100,7 @@ public class Juego {
 
                             } else {
                                 System.out.println("Las nuevas fichas añadidas no son validas, presione enter para seguir");
+                                sc.nextLine();
                                 sc.nextLine();
                             }
 
